@@ -1,0 +1,5 @@
+name: Build Jekyll site
+uses: actions/jekyll-build-pages@v1
+with:
+  source: frontend/docs
+  destination: ./_site
