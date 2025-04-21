@@ -1,5 +1,22 @@
 name: Build Jekyll site
-uses: actions/jekyll-build-pages@v1
-with:
-  source: frontend/docs
-  destination: ./_site
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 1) You must check out your code!
+      - uses: actions/checkout@v3
+
+      # 2) Install Jekyll and its SCSS converter
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7'
+      - run: gem install bundler jekyll jekyll-sass-converter
+
+      # 3) Use the Jekyll build action, pointing at `frontend/docs`
+      - name: Build site
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: frontend/docs
+          destination: ./_site
