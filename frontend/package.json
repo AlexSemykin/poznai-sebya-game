@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "dev": "frontend/node_modules/.bin/vite",
-    "build": "frontend/node_modules/.bin/tsc -b && vite build",
+    "build": "tsc -b && vite build",
     "lint": "frontend/node_modules/.bin/eslint tg-mini-app",
     "preview": "frontend/node_modules/.bin/vite preview",
     "deploy": "if not exist \"..\\docs\" mkdir ..\\docs && npm run build && git add ..\\docs"
