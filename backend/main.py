@@ -3,7 +3,7 @@ import logging
 # Импорт модулей из внутренних пакетов
 from bot import TelegramBot
 from api import WebAppManager
-from config import BOT_TOKEN, WEBHOOK_URL
+from config import BOT_TOKEN, WEBHOOK_URL  # Импорт теперь происходит из пакета config
 
 
 def setup_logging() -> None:
