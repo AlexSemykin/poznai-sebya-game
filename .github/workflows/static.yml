@@ -31,9 +31,11 @@ jobs:
           node-version: "18"
 
       - name: Install dependencies
+        working-directory: frontend
         run: npm ci
 
       - name: Build (Vite → docs/)
+        working-directory: frontend
         run: npm run build
         # your vite.config.js already sets outDir: 'docs'
 
