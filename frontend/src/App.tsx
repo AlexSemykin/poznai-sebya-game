@@ -4,6 +4,7 @@ import './App.css'
 function App() {
     const [userName, setUserName] = useState('Пользователь')
     const [isLoading, setIsLoading] = useState(true)
+    const [userSituation, setUserSituation] = useState('')
 
     useEffect(() => {
         // Инициализация Telegram Mini App API
@@ -27,10 +28,13 @@ function App() {
         setIsLoading(false)
     }, [])
 
-    const handleMainAction = () => {
+    const handleSubmit = () => {
         const telegram = window.Telegram?.WebApp
         if (telegram) {
-            telegram.sendData(JSON.stringify({ action: 'main_button_clicked' }))
+            telegram.sendData(JSON.stringify({ 
+                action: 'situation_submitted',
+                situation: userSituation 
+            }))
         }
     }
 
@@ -41,28 +45,45 @@ function App() {
     return (
         <div className="tg-app">
             <header className="tg-header">
-                <h1>Telegram Mini App</h1>
+                <h1 className="app-title">Пространство Целостности</h1>
                 <p className="welcome-text">Привет, {userName}!</p>
             </header>
 
             <div className="tg-content">
-                <div className="tg-card">
-                    <h2>О приложении</h2>
-                    <p>Это мини-приложение для Telegram, разработанное с использованием React и Vite.</p>
+                <div className="intro-banner">
+                    <div className="star-icon">🌟</div>
+                    <h2>Добро пожаловать в Пространство Целостности!</h2>
+                    <div className="star-icon">🌟</div>
                 </div>
 
-                <div className="tg-card">
-                    <h2>Функции</h2>
-                    <ul className="feature-list">
-                        <li>Интеграция с Telegram</li>
-                        <li>Адаптивный дизайн</li>
-                        <li>Поддержка тем Telegram</li>
-                    </ul>
+                <div className="tg-card description-card">
+                    <p>Ты находишься в диалоговом пространстве, где внутренние конфликты превращаются в точки осознания.</p>
+                    
+                    <p>Этот бот помогает распознать скрытую дуальность внутри тебя — противоположные качества, между которыми возникло напряжение.</p>
+                    
+                    <p>Шаг за шагом ты получишь мягкий, но точный план выхода из внутреннего конфликта — не подавляя, а принимая оба полюса как часть своей целостной природы.</p>
                 </div>
 
-                <button className="tg-button" onClick={handleMainAction}>
-                    Выполнить действие
-                </button>
+                <div className="tg-card situation-card">
+                    <h3>Опиши свою ситуацию</h3>
+                    <p className="hint-text">И мы вместе увидим, где спрятан дар</p>
+                    
+                    <textarea 
+                        className="situation-input"
+                        placeholder="Опиши ситуацию, которая тебя беспокоит..."
+                        value={userSituation}
+                        onChange={(e) => setUserSituation(e.target.value)}
+                        rows={4}
+                    />
+                    
+                    <button 
+                        className="tg-button"
+                        onClick={handleSubmit}
+                        disabled={!userSituation.trim()}
+                    >
+                        Отправить
+                    </button>
+                </div>
             </div>
         </div>
     )
