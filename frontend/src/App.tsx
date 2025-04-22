@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
-    const [userName, setUserName] = useState('Пользователь')
     const [isLoading, setIsLoading] = useState(true)
     const [userSituation, setUserSituation] = useState('')
 
@@ -13,11 +12,6 @@ function App() {
         if (telegram) {
             // Уведомление Telegram, что приложение готово
             telegram.ready()
-
-            // Получение имени пользователя из Telegram
-            if (telegram.initDataUnsafe?.user?.first_name) {
-                setUserName(telegram.initDataUnsafe.user.first_name)
-            }
 
             // Настройка основного цвета из темы Telegram
             document.documentElement.style.setProperty('--tg-theme-button-color', telegram.themeParams?.button_color || '#50a8eb')
@@ -46,7 +40,6 @@ function App() {
         <div className="tg-app">
             <header className="tg-header">
                 <h1 className="app-title">Пространство Целостности</h1>
-                <p className="welcome-text">Привет, {userName}!</p>
             </header>
 
             <div className="tg-content">
