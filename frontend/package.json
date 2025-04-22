@@ -7,7 +7,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "frontend/node_modules/.bin/vite",
+    "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "frontend/node_modules/.bin/eslint tg-mini-app",
     "preview": "frontend/node_modules/.bin/vite preview",
